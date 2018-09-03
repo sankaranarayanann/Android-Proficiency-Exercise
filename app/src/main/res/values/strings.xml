@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">FactsFeed</string>
+    <string name="app_name">Facts Feed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="failure_text">Something went wrong...Please try later!</string>
+    <string name="nointernetconnection_msg">Please check your internet connection.</string>
 </resources>
