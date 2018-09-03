@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--data binding with ListViewModel definition-->
+    <!--data binding with DataListViewModel definition-->
     <data>
         <variable
             name="viewmodel"
@@ -11,7 +11,8 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/row_margin">
 
         <TextView
             android:id="@+id/title"
@@ -19,8 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:textColor="@android:color/holo_blue_dark"
-            android:textSize="18sp"
-            android:text="@{viewmodel.feed.title}"/>
+            android:textSize="@dimen/material_text_subheading"
+            android:text="@{viewmodel.feed.title}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,9 +34,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                android:textSize="12sp"
+                android:textSize="@dimen/material_text_body1"
                 android:layout_weight="2"
-                android:text="@{viewmodel.feed.description}"/>
+                android:text="@{viewmodel.feed.description}" />
 
             <ImageView
                 android:id="@+id/image"

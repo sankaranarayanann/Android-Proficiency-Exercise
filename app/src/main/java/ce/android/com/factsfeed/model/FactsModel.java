@@ -2,6 +2,9 @@ package ce.android.com.factsfeed.model;
 
 import java.util.ArrayList;
 
+/*
+Model class for Facts entities
+ */
 public class FactsModel {
 
     public String title;

@@ -14,7 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import ce.android.com.factsfeed.R;
+import ce.android.com.factsfeed.Utils.AlertDialogHelper;
 import ce.android.com.factsfeed.Utils.Utils;
 import ce.android.com.factsfeed.adapter.DataAdapter;
 import ce.android.com.factsfeed.model.FactsModel;
@@ -27,6 +30,7 @@ public class MainFragment extends Fragment {
     MainViewModel viewModel;
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
+    AlertDialogHelper alertDialog;
 
     public MainFragment() {
 
@@ -36,6 +40,7 @@ public class MainFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        alertDialog = new AlertDialogHelper(context);
     }
 
     @Override
@@ -63,14 +68,15 @@ public class MainFragment extends Fragment {
     private void refreshList() {
 
         // Adapter for recycler view
-        final DataAdapter data = new DataAdapter();
-        recyclerView.setAdapter(data);
+        final DataAdapter adapter = new DataAdapter();
+        recyclerView.setAdapter(adapter);
 
-        if (Utils.isInternetConnected(getContext())) {
-            viewModel.GetFacts().observe(this, (FactsModel facts) -> {
+        if (Utils.isInternetConnected(Objects.requireNonNull(getContext()))) {
+            viewModel.getFacts().observe(this, (FactsModel facts) -> {
+                // Success response will update ui
                 if (facts != null) {
-                    getActivity().setTitle(facts.getTitle());
-                    data.updateData(facts.getRows());
+                    Objects.requireNonNull(getActivity()).setTitle(facts.getTitle());
+                    adapter.updateData(facts.getRows());
                 } else {
                     Toast.makeText(getContext(), R.string.failure_text, Toast.LENGTH_LONG).show();
                 }
@@ -78,7 +84,7 @@ public class MainFragment extends Fragment {
             });
         } else {
             swipeRefreshLayout.setRefreshing(false);
-            Toast.makeText(getContext(), R.string.nointernetconnection_msg, Toast.LENGTH_LONG).show();
+            alertDialog.showAlertDialog(getString(R.string.no_connection_Title), getString(R.string.nointernetconnection_msg), getString(R.string.Ok));
         }
     }
 

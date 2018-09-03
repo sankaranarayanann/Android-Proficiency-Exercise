@@ -1,11 +1,8 @@
 package ce.android.com.factsfeed.model;
 
-import android.databinding.BaseObservable;
-import android.databinding.BindingAdapter;
-import android.widget.ImageView;
-
-import com.squareup.picasso.Picasso;
-
+/*
+Model class for Feeds entities
+ */
 public class FeedModel {
 
     private String title, description, imageHref;
@@ -34,10 +31,5 @@ public class FeedModel {
 
     public String getImageHref() {
         return imageHref;
-    }
-
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView imageView , String imageUrl) {
-        Picasso.with(imageView.getContext()).load(imageUrl).placeholder(null).into(imageView);
     }
 }

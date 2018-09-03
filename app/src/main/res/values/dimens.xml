@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="material_text_subheading">18sp</dimen>
+    <dimen name="material_text_body1">14sp</dimen>
+    <dimen name="row_margin">5dp</dimen>
+</resources>
